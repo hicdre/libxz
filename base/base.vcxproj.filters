@@ -13,12 +13,6 @@
     <Filter Include="win">
       <UniqueIdentifier>{47FC5EC4-15EB-E92F-89D7-AFE51CF838A9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="chromeos">
-      <UniqueIdentifier>{3250F0B1-2DA3-5E5D-4EBC-552537BE80D1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="chromeos\_excluded_files">
-      <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
-    </Filter>
     <Filter Include="allocator">
       <UniqueIdentifier>{97B6ECA3-A204-9105-2F14-5256F8C49D81}</UniqueIdentifier>
     </Filter>
@@ -55,12 +49,6 @@
     <Filter Include="third_party">
       <UniqueIdentifier>{D6C6CEA7-AAD0-03AD-2394-AC6FCBF8A498}</UniqueIdentifier>
     </Filter>
-    <Filter Include="third_party\xdg_user_dirs">
-      <UniqueIdentifier>{6E9B8795-7E7F-FB3A-1C1F-09B012B41A2D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="third_party\xdg_user_dirs\_excluded_files">
-      <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
-    </Filter>
     <Filter Include="third_party\dmg_fp">
       <UniqueIdentifier>{87747271-B296-E169-44C0-12EC81ED35FF}</UniqueIdentifier>
     </Filter>
@@ -76,20 +64,8 @@
     <Filter Include="third_party\nspr\_excluded_files">
       <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ios">
-      <UniqueIdentifier>{5D988FAB-2F83-50FF-3F70-6A382CF02DF4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ios\_excluded_files">
-      <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
-    </Filter>
     <Filter Include="metrics">
       <UniqueIdentifier>{DC24B95F-2580-773E-999D-FF21A384B9AB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="nix">
-      <UniqueIdentifier>{7AAA9544-6A84-A02C-3583-0379204EA5A4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="nix\_excluded_files">
-      <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
     </Filter>
     <Filter Include="synchronization">
       <UniqueIdentifier>{214F8E67-7437-F20E-6191-AECBD38CDFDC}</UniqueIdentifier>
@@ -703,12 +679,6 @@
     <ClCompile Include="win\shortcut.cc">
       <Filter>win</Filter>
     </ClCompile>
-    <ClCompile Include="chromeos\chromeos_version.cc">
-      <Filter>chromeos\_excluded_files</Filter>
-    </ClCompile>
-    <ClInclude Include="chromeos\chromeos_version.h">
-      <Filter>chromeos\_excluded_files</Filter>
-    </ClInclude>
     <ClInclude Include="allocator\allocator_extension.h">
       <Filter>allocator</Filter>
     </ClInclude>
@@ -1057,12 +1027,6 @@
     <ClCompile Include="files\file_path_watcher_linux.cc">
       <Filter>files\_excluded_files</Filter>
     </ClCompile>
-    <ClInclude Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.h">
-      <Filter>third_party\xdg_user_dirs\_excluded_files</Filter>
-    </ClInclude>
-    <ClCompile Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.cc">
-      <Filter>third_party\xdg_user_dirs\_excluded_files</Filter>
-    </ClCompile>
     <ClCompile Include="third_party\dmg_fp\g_fmt.cc">
       <Filter>third_party\dmg_fp</Filter>
     </ClCompile>
@@ -1114,24 +1078,6 @@
     <ClInclude Include="third_party\nspr\prcpucfg_nacl.h">
       <Filter>third_party\nspr\_excluded_files</Filter>
     </ClInclude>
-    <None Include="ios\ios_util.mm">
-      <Filter>ios\_excluded_files</Filter>
-    </None>
-    <ClInclude Include="ios\device_util.h">
-      <Filter>ios\_excluded_files</Filter>
-    </ClInclude>
-    <None Include="ios\scoped_critical_action.mm">
-      <Filter>ios\_excluded_files</Filter>
-    </None>
-    <ClInclude Include="ios\scoped_critical_action.h">
-      <Filter>ios\_excluded_files</Filter>
-    </ClInclude>
-    <ClInclude Include="ios\ios_util.h">
-      <Filter>ios\_excluded_files</Filter>
-    </ClInclude>
-    <None Include="ios\device_util.mm">
-      <Filter>ios\_excluded_files</Filter>
-    </None>
     <ClInclude Include="metrics\statistics_recorder.h">
       <Filter>metrics</Filter>
     </ClInclude>
@@ -1207,18 +1153,6 @@
     <ClCompile Include="metrics\histogram.cc">
       <Filter>metrics</Filter>
     </ClCompile>
-    <ClCompile Include="nix\mime_util_xdg.cc">
-      <Filter>nix\_excluded_files</Filter>
-    </ClCompile>
-    <ClCompile Include="nix\xdg_util.cc">
-      <Filter>nix\_excluded_files</Filter>
-    </ClCompile>
-    <ClInclude Include="nix\mime_util_xdg.h">
-      <Filter>nix\_excluded_files</Filter>
-    </ClInclude>
-    <ClInclude Include="nix\xdg_util.h">
-      <Filter>nix\_excluded_files</Filter>
-    </ClInclude>
     <ClInclude Include="synchronization\waitable_event_watcher.h">
       <Filter>synchronization</Filter>
     </ClInclude>

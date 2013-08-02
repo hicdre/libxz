@@ -597,15 +597,6 @@
     <None Include="threading\platform_thread_mac.mm">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </None>
-    <None Include="ios\ios_util.mm">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </None>
-    <None Include="ios\scoped_critical_action.mm">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </None>
-    <None Include="ios\device_util.mm">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </None>
     <None Include="mac\scoped_nsautorelease_pool.mm">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </None>
@@ -826,9 +817,6 @@
     <ClInclude Include="win\windows_version.h" />
     <ClInclude Include="win\win_util.h" />
     <ClInclude Include="win\enum_variant.h" />
-    <ClInclude Include="chromeos\chromeos_version.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="allocator\allocator_extension.h" />
     <ClInclude Include="allocator\type_profiler_control.h" />
     <ClInclude Include="threading\thread_restrictions.h" />
@@ -893,9 +881,6 @@
     <ClInclude Include="files\dir_reader_linux.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="third_party\dmg_fp\dmg_fp.h" />
     <ClInclude Include="third_party\icu\icu_utf.h" />
     <ClInclude Include="third_party\xdg_mime\xdgmime.h" />
@@ -915,15 +900,6 @@
     <ClInclude Include="third_party\nspr\prcpucfg_nacl.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="ios\device_util.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="ios\scoped_critical_action.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="ios\ios_util.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="metrics\statistics_recorder.h" />
     <ClInclude Include="metrics\bucket_ranges.h" />
     <ClInclude Include="metrics\sample_vector.h" />
@@ -937,12 +913,6 @@
     <ClInclude Include="metrics\sparse_histogram.h" />
     <ClInclude Include="metrics\histogram_base.h" />
     <ClInclude Include="metrics\stats_table.h" />
-    <ClInclude Include="nix\mime_util_xdg.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="nix\xdg_util.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="synchronization\waitable_event_watcher.h" />
     <ClInclude Include="synchronization\lock.h" />
     <ClInclude Include="synchronization\lock_impl.h" />
@@ -1326,9 +1296,6 @@
     <ClCompile Include="win\registry.cc" />
     <ClCompile Include="win\event_trace_controller.cc" />
     <ClCompile Include="win\shortcut.cc" />
-    <ClCompile Include="chromeos\chromeos_version.cc">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="allocator\allocator_extension.cc" />
     <ClCompile Include="allocator\type_profiler_control.cc" />
     <ClCompile Include="threading\sequenced_worker_pool.cc" />
@@ -1416,9 +1383,6 @@
     <ClCompile Include="files\file_path_watcher_linux.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.cc">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="third_party\dmg_fp\g_fmt.cc" />
     <ClCompile Include="third_party\dmg_fp\dtoa_wrapper.cc" />
     <ClCompile Include="third_party\icu\icu_utf.cc" />
@@ -1435,12 +1399,6 @@
     <ClCompile Include="metrics\histogram_snapshot_manager.cc" />
     <ClCompile Include="metrics\statistics_recorder.cc" />
     <ClCompile Include="metrics\histogram.cc" />
-    <ClCompile Include="nix\mime_util_xdg.cc">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="nix\xdg_util.cc">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="synchronization\cancellation_flag.cc" />
     <ClCompile Include="synchronization\waitable_event_watcher_win.cc" />
     <ClCompile Include="synchronization\lock.cc" />

@@ -8,6 +8,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "..\base\base.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ipc", "..\ipc\ipc.vcxproj", "{F0A02E1D-2ACA-EFA6-F18C-DC2E33A21116}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ipc_echo_server", "ipc_echo_server\ipc_echo_server.vcxproj", "{003CB4C3-F411-4AD6-B956-1917474A3C28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -44,6 +46,12 @@ Global
 		{F0A02E1D-2ACA-EFA6-F18C-DC2E33A21116}.Release|Win32.Build.0 = Release_Static|Win32
 		{F0A02E1D-2ACA-EFA6-F18C-DC2E33A21116}.Release|x64.ActiveCfg = Release|x64
 		{F0A02E1D-2ACA-EFA6-F18C-DC2E33A21116}.Release|x64.Build.0 = Release|x64
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Debug|Win32.ActiveCfg = Debug|Win32
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Debug|Win32.Build.0 = Debug|Win32
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Debug|x64.ActiveCfg = Debug|Win32
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Release|Win32.ActiveCfg = Release|Win32
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Release|Win32.Build.0 = Release|Win32
+		{003CB4C3-F411-4AD6-B956-1917474A3C28}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
