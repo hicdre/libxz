@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{29214f30-ef6b-48ac-bda2-9a1f4ae7c07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{d81e68aa-6d49-47b9-89e6-8cec09195f5f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="rootnode.h">
+      <Filter>app</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeTest.cpp" />
+    <ClCompile Include="application.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="rootnode.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
