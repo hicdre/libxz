@@ -13,20 +13,11 @@ Node::Node(void)
 {
 }
 
-Node::Node()
-{
-
-}
-
 
 Node::~Node(void)
 {
 }
 
-Node::~Node()
-{
-
-}
 
 Node* Node::GetParent() const
 {
@@ -68,7 +59,7 @@ int32 Node::GetChildCount() const
 
 Node* Node::AppendTo( Node* parent )
 {
-	return parent->AppendTo(this);
+	return parent->Append(this);
 }
 
 Node* Node::Append( Node* child )
@@ -210,6 +201,8 @@ bool Node::PostVisit( std::function<bool(Node*)> func )
 
 	if (!func(this))
 		return false;
+
+	return true;
 }
 
 
@@ -217,7 +210,7 @@ bool Node::PostVisit( std::function<bool(Node*)> func )
 Node* Node::Detach()
 {
 	//RootNode* root = GetRoot();
-	parent_->Remove(this);
+	return parent_->Remove(this);
 }
 
 RootNode* Node::GetRoot() const

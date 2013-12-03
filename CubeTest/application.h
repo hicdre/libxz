@@ -16,6 +16,7 @@ public:
 	void Init(base::MessageLoopForUI* loop);
 	void Run();
 
+	void CreateWindowNode();
 private:
 	Application(void);
 	static LRESULT CALLBACK WndProc(HWND window,
@@ -23,7 +24,7 @@ private:
 		WPARAM w_param,
 		LPARAM l_param);
 
-	LRESULT HandleMessage(UINT message, WPARAM w_param, LPARAM l_param);
+	LRESULT HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM l_param);
 
 
 private:

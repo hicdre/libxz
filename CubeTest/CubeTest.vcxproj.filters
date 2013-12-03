@@ -7,6 +7,9 @@
     <Filter Include="app">
       <UniqueIdentifier>{d81e68aa-6d49-47b9-89e6-8cec09195f5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{50744ad1-55df-4c56-bedb-06bb0db9396a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -24,6 +27,10 @@
     <ClInclude Include="rootnode.h">
       <Filter>app</Filter>
     </ClInclude>
+    <ClInclude Include="windownode.h" />
+    <ClInclude Include="geometry.h">
+      <Filter>base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -38,6 +45,10 @@
     </ClCompile>
     <ClCompile Include="rootnode.cpp">
       <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="windownode.cpp" />
+    <ClCompile Include="geometry.cpp">
+      <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

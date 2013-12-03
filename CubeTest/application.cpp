@@ -4,6 +4,7 @@
 #include "base/message_loop.h"
 #include "base/win/wrapped_window_proc.h"
 #include "rootnode.h"
+#include "windownode.h"
 
 const wchar_t* kWindowClass = L"CubeTestWnd";
 
@@ -43,15 +44,7 @@ void Application::Init(base::MessageLoopForUI* loop)
 
 	ATOM atom = RegisterClassEx(&window_class);
 
-	root_wnd_ = (CreateWindowEx(WS_EX_WINDOWEDGE, kWindowClass, NULL,
-		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_OVERLAPPED,
-		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, NULL, (LPVOID)this));
-
-	DWORD dwStyle = ::GetWindowLong(root_wnd_, GWL_STYLE);
-	::SetWindowLong(root_wnd_, GWL_STYLE, (dwStyle & ~WS_CAPTION));
-
-
-	ShowWindow(root_wnd_, SW_SHOW);
+	CreateWindowNode();
 }
 
 LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param, LPARAM l_param )
@@ -61,45 +54,36 @@ LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param
 		Application* app = reinterpret_cast<Application*>(cs->lpCreateParams);
 		SetWindowLongPtr(window, GWLP_USERDATA,
 			reinterpret_cast<LONG_PTR>(app));
+
+		WindowNode* newnode = new WindowNode;
+		newnode->AttachHwnd(window);
+
+		app->root_node_->Append(newnode);
 		return TRUE;
 	}
 
 	Application *app = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
 
 	if (app){
-		return app->HandleMessage(message, w_param, l_param);
+		return app->HandleMessage(window, message, w_param, l_param);
 	}
 
 	return DefWindowProc(window, message, w_param, l_param);
 }
 
-LRESULT Application::HandleMessage( UINT message, WPARAM w_param, LPARAM l_param )
+LRESULT Application::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM l_param )
 {
-	switch (message)
-	{
-	case WM_MOUSEMOVE:
-		{
-		}
-		break;
-	case WM_LBUTTONUP:
-		{
-		}
-		break;
-	case WM_LBUTTONDOWN:
-		{
-		}
-		break;
-	case WM_CLOSE:
-		DestroyWindow(root_wnd_);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		break;
-	}
-
-	root_node_->HandleMessage(message, w_param, l_param);
+	root_node_->HandleMessage(hwnd, message, w_param, l_param);
 
 	return DefWindowProc(root_wnd_, message, w_param, l_param);
+}
+
+void Application::CreateWindowNode()
+{
+	HWND hwnd = (CreateWindowEx(WS_EX_WINDOWEDGE, kWindowClass, NULL,
+		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_OVERLAPPED,
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, NULL, (LPVOID)this));
+
+	DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
+	::SetWindowLong(hwnd, GWL_STYLE, (dwStyle & ~WS_CAPTION));
 }
