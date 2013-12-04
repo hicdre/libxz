@@ -28,7 +28,7 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 	WindowNode* win = FindWindow(hwnd);
 	
 	if (win == NULL) {
-		NOTREACHED()<<"can not find window";
+		//NOTREACHED()<<"can not find window";
 		return 0;
 	}
 

@@ -45,6 +45,7 @@ void Application::Init(base::MessageLoopForUI* loop)
 	ATOM atom = RegisterClassEx(&window_class);
 
 	CreateWindowNode();
+
 }
 
 LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param, LPARAM l_param )
@@ -55,18 +56,19 @@ LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param
 		SetWindowLongPtr(window, GWLP_USERDATA,
 			reinterpret_cast<LONG_PTR>(app));
 
-		WindowNode* newnode = new WindowNode;
-		newnode->AttachHwnd(window);
-
-		app->root_node_->Append(newnode);
+		
 		return TRUE;
 	}
 
 	Application *app = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
 
+	LRESULT result = 0;
 	if (app){
-		return app->HandleMessage(window, message, w_param, l_param);
+		result = app->HandleMessage(window, message, w_param, l_param);
 	}
+
+	if (result)
+		return result;
 
 	return DefWindowProc(window, message, w_param, l_param);
 }
@@ -86,4 +88,11 @@ void Application::CreateWindowNode()
 
 	DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
 	::SetWindowLong(hwnd, GWL_STYLE, (dwStyle & ~WS_CAPTION));
+
+	WindowNode* newnode = new WindowNode;
+	newnode->AttachHwnd(hwnd);
+	newnode->ShowWindow(SW_SHOW);
+
+	root_node_->AddWindow(newnode);
+
 }
