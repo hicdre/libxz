@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "geometry.h"
+#include <math.h>
+#include <algorithm> 
 
 namespace geometry
 {
@@ -160,4 +162,102 @@ namespace geometry
 			getMaxY() < rect.getMinY() ||
 			rect.getMaxY() <      getMinY());
 	}
+
+	Transform::Transform()
+		: a(1.0), b(0.0), c(0.0), d(1.0), tx(0.0), ty(0.0)
+	{
+	}
+
+	Transform::Transform( float a, float b, float c, float d, float tx, float ty )
+		: a(a), b(b), c(c), d(d), tx(tx), ty(ty)
+	{
+
+	}
+
+	bool Transform::IsEqual( const Transform& t ) const
+	{
+		return (a == t.a && b == t.b && c == t.c && d == t.d && tx == t.tx && ty == t.ty);
+	}
+
+	Point Transform::Apply( const Point& point ) const
+	{
+		Point p;
+		p.x = (float)((double)a * point.x + (double)c * point.y + tx);
+		p.y = (float)((double)b * point.x + (double)d * point.y + ty);
+		return p;
+	}
+
+	Size Transform::Apply( const Size& size ) const
+	{
+		Size s;
+		s.w = (float)((double)a * size.w + (double)c * size.h);
+		s.h = (float)((double)b * size.w + (double)d * size.h);
+		return s;
+	}
+
+	Rect Transform::Apply( const Rect& rect ) const
+	{
+		float top    = rect.getMinY();
+		float left   = rect.getMinX();
+		float right  = rect.getMaxX();
+		float bottom = rect.getMaxY();
+
+		Point topLeft = Apply(PointMake(left, top));
+		Point topRight = Apply(PointMake(right, top));
+		Point bottomLeft = Apply(PointMake(left, bottom));
+		Point bottomRight = Apply(PointMake(right, bottom));
+
+		float minX = (std::min)((std::min)(topLeft.x, topRight.x), (std::min)(bottomLeft.x, bottomRight.x));
+		float maxX = (std::max)((std::max)(topLeft.x, topRight.x), (std::max)(bottomLeft.x, bottomRight.x));
+		float minY = (std::min)((std::min)(topLeft.y, topRight.y), (std::min)(bottomLeft.y, bottomRight.y));
+		float maxY = (std::max)((std::max)(topLeft.y, topRight.y), (std::max)(bottomLeft.y, bottomRight.y));
+
+		return RectMake(minX, minY, (maxX - minX), (maxY - minY));
+	}
+
+	Transform Transform::Translate( float x, float y ) const
+	{
+		return Transform(a, b, c, d, tx + a * x + c * y, y + b * tx + d * ty);
+	}
+
+	Transform Transform::Rotate( float anAngle ) const
+	{
+		float fSin = std::sin(anAngle);
+		float fCos = std::cos(anAngle);
+
+		return Transform( a * fCos + c * fSin,
+			b * fCos + d * fSin,
+			c * fCos - a * fSin,
+			d * fCos - b * fSin,
+			tx,
+			ty);
+	}
+
+	Transform Transform::Scale( float sx, float sy ) const
+	{
+		return Transform(a * sx, b * sx, c * sy, d * sy, tx, ty);
+	}
+
+	Transform Transform::Concat( const Transform& t ) const
+	{
+		return Transform(    a * t.a + b * t.c, a * t.b + b * t.d, //a,b
+			c * t.a + d * t.c, c * t.b + d * t.d, //c,d
+			tx * t.a + ty * t.c + t.tx,                  //tx
+			tx * t.b + ty * t.d + t.ty);                  //ty
+	}
+
+	Transform Transform::Invert() const
+	{
+		float determinant = 1 / (a * d - b * c);
+
+		return Transform(determinant * d, -determinant * b, -determinant * c, determinant * a,
+			determinant * (c * ty - d * tx), determinant * (b * tx - a * ty) );
+	}
+
+	XFORM Transform::ToXFORM() const
+	{
+		XFORM x = {a, b, c, d, tx, ty};
+		return x;
+	}
+
 }

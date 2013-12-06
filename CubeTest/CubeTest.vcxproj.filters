@@ -10,6 +10,12 @@
     <Filter Include="base">
       <UniqueIdentifier>{50744ad1-55df-4c56-bedb-06bb0db9396a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="node">
+      <UniqueIdentifier>{5ca8b8c0-fbd6-476e-89c7-3fe17b5e3516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="paint">
+      <UniqueIdentifier>{4f692282-9c06-4a5f-86e3-268c42452ad9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,9 +33,23 @@
     <ClInclude Include="rootnode.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="windownode.h" />
     <ClInclude Include="geometry.h">
       <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="windownode.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="cubenode.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="paintnode.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="paintstruct.h">
+      <Filter>paint</Filter>
+    </ClInclude>
+    <ClInclude Include="xmlconstructer.h">
+      <Filter>app</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +66,23 @@
     <ClCompile Include="rootnode.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="windownode.cpp" />
     <ClCompile Include="geometry.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="windownode.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="cubenode.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="paintnode.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="paintstruct.cpp">
+      <Filter>paint</Filter>
+    </ClCompile>
+    <ClCompile Include="xmlconstructer.cpp">
+      <Filter>app</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

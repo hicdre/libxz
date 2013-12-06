@@ -1,6 +1,7 @@
 #pragma once
 #include "base/basictypes.h"
 #include "base/memory/scoped_ptr.h"
+#include <string>
 template <typename T> struct DefaultSingletonTraits;
 
 namespace base {
@@ -8,6 +9,7 @@ namespace base {
 }
 
 class RootNode;
+class WindowNode;
 class Application
 {
 public:
@@ -16,7 +18,8 @@ public:
 	void Init(base::MessageLoopForUI* loop);
 	void Run();
 
-	void CreateWindowNode();
+	static WindowNode* CreateWindowNode();
+	void LoadFromFile(const std::wstring& file);
 private:
 	Application(void);
 	static LRESULT CALLBACK WndProc(HWND window,

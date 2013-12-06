@@ -2,6 +2,7 @@
 #include "rootnode.h"
 #include "windownode.h"
 #include "base/logging.h"
+#include "paintstruct.h"
 
 
 
@@ -36,9 +37,8 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 	{
 	case WM_PAINT:
 		{
-			//PAINTSTRUCT ps;
-			//hdc = BeginPaint(hwnd, &ps); 
-
+			PaintStruct ps(hwnd);
+			win->DoPaint(&ps);
 		}
 		break;
 	case WM_CLOSE:
@@ -46,7 +46,9 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 		break;
 	case WM_DESTROY:
 		DetermineQuit();
+		break;
 	default:
+		DefWindowProc(hwnd, message, w_param, l_param);
 		break;
 	}
 

@@ -6,6 +6,10 @@
 #include "rootnode.h"
 #include "windownode.h"
 
+#include "cubenode.h"
+
+#include "xmlconstructer.h"
+
 const wchar_t* kWindowClass = L"CubeTestWnd";
 
 Application::Application(void)
@@ -44,7 +48,7 @@ void Application::Init(base::MessageLoopForUI* loop)
 
 	ATOM atom = RegisterClassEx(&window_class);
 
-	CreateWindowNode();
+	//CreateWindowNode();
 
 }
 
@@ -64,27 +68,22 @@ LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param
 
 	LRESULT result = 0;
 	if (app){
-		result = app->HandleMessage(window, message, w_param, l_param);
+		return app->HandleMessage(window, message, w_param, l_param);
 	}
-
-	if (result)
-		return result;
 
 	return DefWindowProc(window, message, w_param, l_param);
 }
 
 LRESULT Application::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM l_param )
 {
-	root_node_->HandleMessage(hwnd, message, w_param, l_param);
-
-	return DefWindowProc(root_wnd_, message, w_param, l_param);
+	return root_node_->HandleMessage(hwnd, message, w_param, l_param);
 }
 
-void Application::CreateWindowNode()
+WindowNode* Application::CreateWindowNode()
 {
 	HWND hwnd = (CreateWindowEx(WS_EX_WINDOWEDGE, kWindowClass, NULL,
 		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_OVERLAPPED,
-		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, NULL, (LPVOID)this));
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, NULL, (LPVOID)GetInstance()));
 
 	DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
 	::SetWindowLong(hwnd, GWL_STYLE, (dwStyle & ~WS_CAPTION));
@@ -93,6 +92,15 @@ void Application::CreateWindowNode()
 	newnode->AttachHwnd(hwnd);
 	newnode->ShowWindow(SW_SHOW);
 
-	root_node_->AddWindow(newnode);
+	return newnode;
 
+}
+
+void Application::LoadFromFile( const std::wstring& file )
+{
+	//载入配置文件
+	XmlConstructer constructer(root_node_.get());
+	constructer.Load(file);
+
+	//反序列化属性信息
 }

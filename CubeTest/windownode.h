@@ -1,8 +1,7 @@
 #pragma once
-#include "node.h"
-#include "geometry.h"
+#include "paintnode.h"
 
-class WindowNode : public Node
+class WindowNode : public PaintNode
 {
 public:
 	WindowNode(void);
@@ -14,10 +13,10 @@ public:
 
 	void ShowWindow(int nCmdShow);
 
-	LRESULT HandleMessage(UINT message, WPARAM w_param, LPARAM l_param);
+public:
+	virtual void OnPaint(PaintStruct* ps) override;
+
 private:
 	HWND wnd_;
-
-	geometry::Rect rect_;
 };
 

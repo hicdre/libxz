@@ -183,7 +183,7 @@ bool Node::PreVisit( std::function<bool(Node*)> func )
 
 	for (Node* p = first_child_; p!=NULL; p=p->next_sibling_)
 	{
-		if (!first_child_->PreVisit(func))
+		if (!p->PreVisit(func))
 			break;
 	}
 
@@ -195,7 +195,7 @@ bool Node::PostVisit( std::function<bool(Node*)> func )
 {
 	for (Node* p = first_child_; p!=NULL; p=p->next_sibling_)
 	{
-		if (!first_child_->PostVisit(func))
+		if (!p->PostVisit(func))
 			break;
 	}
 
@@ -220,4 +220,10 @@ RootNode* Node::GetRoot() const
 		p = p->parent_;
 	return dynamic_cast<RootNode*>(const_cast<Node*>(p));
 }
+
+void Node::SetAttribute( const std::string name, const std::wstring& value )
+{
+	attributes_[name] = value;
+}
+
 

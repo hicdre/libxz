@@ -2,6 +2,8 @@
 #include "base/basictypes.h"
 #include <vector>
 #include <functional>
+#include <unordered_map>
+#include <string>
 
 class RootNode;
 class Node
@@ -36,6 +38,7 @@ public:
 	bool PreVisit(std::function<bool(Node*)> func);
 	bool PostVisit(std::function<bool(Node*)> func);
 
+	void SetAttribute(const std::string name, const std::wstring& value);
 protected:
 	Node* parent_;
 	Node* first_child_;
@@ -43,5 +46,7 @@ protected:
 	Node* next_sibling_;
 	Node* prev_sibling_;
 	int32 child_count_;
+
+	std::unordered_map<std::string, std::wstring> attributes_;
 };
 

@@ -20,6 +20,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	Application::GetInstance()->Init(&main_loop);
 
+	Application::GetInstance()->LoadFromFile(L"app.xml");
+
 	Application::GetInstance()->Run();
 	
 	return 0;
