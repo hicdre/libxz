@@ -3,17 +3,20 @@
 #include "base/memory/singleton.h"
 #include "base/message_loop.h"
 #include "base/win/wrapped_window_proc.h"
+
 #include "rootnode.h"
 #include "windownode.h"
 
 #include "cubenode.h"
 
 #include "xmlconstructer.h"
+#include "renderengine.h"
 
 const wchar_t* kWindowClass = L"CubeTestWnd";
 
 Application::Application(void)
 	: root_node_(new RootNode)
+	, render_engine_(new render::RenderEngine)
 {
 }
 
@@ -79,7 +82,7 @@ LRESULT Application::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPAR
 	return root_node_->HandleMessage(hwnd, message, w_param, l_param);
 }
 
-WindowNode* Application::CreateWindowNode()
+HWND Application::CreateHWND()
 {
 	HWND hwnd = (CreateWindowEx(WS_EX_WINDOWEDGE, kWindowClass, NULL,
 		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_OVERLAPPED,
@@ -88,12 +91,7 @@ WindowNode* Application::CreateWindowNode()
 	DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
 	::SetWindowLong(hwnd, GWL_STYLE, (dwStyle & ~WS_CAPTION));
 
-	WindowNode* newnode = new WindowNode;
-	newnode->AttachHwnd(hwnd);
-	newnode->ShowWindow(SW_SHOW);
-
-	return newnode;
-
+	return hwnd;
 }
 
 void Application::LoadFromFile( const std::wstring& file )
@@ -101,6 +99,21 @@ void Application::LoadFromFile( const std::wstring& file )
 	//载入配置文件
 	XmlConstructer constructer(root_node_.get());
 	constructer.Load(file);
-
+	
 	//反序列化属性信息
+	root_node_->CheckAndApplyProperties();
+
+	root_node_->ShowMainWindow();
+
 }
+
+render::FontFactory* Application::GetFontFactory()
+{
+	return render_engine_->GetFontFactory();
+}
+
+render::RenderEngine* Application::GetRenderEngine() const
+{
+	return render_engine_.get();
+}
+

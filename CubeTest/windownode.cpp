@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "windownode.h"
+#include "application.h"
+#include "rootnode.h"
+#include "renderengine.h"
 
 
 
@@ -33,6 +36,7 @@ void WindowNode::AttachHwnd( HWND hwnd )
 	pos_.y = (float)rect.top;
 	size_.w = (float)(rect.right - rect.left);
 	size_.h = (float)(rect.bottom - rect.top);
+
 }
 
 void WindowNode::ShowWindow( int nCmdShow )
@@ -43,6 +47,28 @@ void WindowNode::ShowWindow( int nCmdShow )
 
 void WindowNode::OnPaint( PaintStruct* ps )
 {
-	//ps->FillRect(RectMake(0, 0, 200, 50));
+	render::RenderEngine* engine = Application::GetInstance()->GetRenderEngine();
+	render::Brush* brush = engine->GetBrushFactory()->GetBrush(RGB(0,255,0), render::Brush::StyleSolid);
+	ps->SetBrush(brush);
+	ps->SetStrokeWidth(10.0);
+	ps->SetStrokeStyle(new render::StrokeStyle());
+	ps->DrawRect(RectMake(20, 20, 200, 80));
 	//ps->FillRect(RectMake(100, 100, 200, 50));
+	
+
+
+	render::Font* font = Application::GetInstance()->GetFontFactory()->GetFont(L"Consolas", 16, render::Font::StyleRegular);
+	ps->SetFont(font);
+	ps->SetTextColor(RGB(200,200,0));
+	ps->DrawText(L"Hello World!", RectMake(100, 250, 200, 50), DT_LEFT);
+}
+
+void WindowNode::ApplyProperties()
+{
+	if (wnd_ == NULL)
+	{
+		wnd_ = Application::CreateHWND();
+
+		GetRoot()->AddWindow(this);
+	}
 }

@@ -8,6 +8,11 @@ namespace base {
 	class MessageLoopForUI;
 }
 
+namespace render{
+	class RenderEngine;
+	class FontFactory;
+}
+
 class RootNode;
 class WindowNode;
 class Application
@@ -18,8 +23,11 @@ public:
 	void Init(base::MessageLoopForUI* loop);
 	void Run();
 
-	static WindowNode* CreateWindowNode();
+	static HWND CreateHWND();
 	void LoadFromFile(const std::wstring& file);
+
+	render::FontFactory* GetFontFactory();
+	render::RenderEngine* GetRenderEngine() const;
 private:
 	Application(void);
 	static LRESULT CALLBACK WndProc(HWND window,
@@ -36,6 +44,8 @@ private:
 	base::MessageLoopForUI* main_message_loop_;
 
 	scoped_ptr<RootNode> root_node_;
+
+	scoped_ptr<render::RenderEngine> render_engine_;
 
 	friend struct DefaultSingletonTraits<Application>;
 	DISALLOW_COPY_AND_ASSIGN(Application);

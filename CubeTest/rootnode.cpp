@@ -3,7 +3,7 @@
 #include "windownode.h"
 #include "base/logging.h"
 #include "paintstruct.h"
-
+#include "message.h"
 
 
 RootNode::RootNode()
@@ -30,7 +30,7 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 	
 	if (win == NULL) {
 		//NOTREACHED()<<"can not find window";
-		return 0;
+		return DefWindowProc(hwnd, message, w_param, l_param);
 	}
 
 	switch (message)
@@ -47,6 +47,9 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 	case WM_DESTROY:
 		DetermineQuit();
 		break;
+	case UI_NOTIFY:
+		TranslateNotify(w_param, l_param);
+		break;
 	default:
 		DefWindowProc(hwnd, message, w_param, l_param);
 		break;
@@ -57,8 +60,8 @@ LRESULT RootNode::HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM 
 
 void RootNode::AddWindow( WindowNode* node )
 {
-	if (Append(node))
-		windows_.push_back(node);
+	//if (Append(node))
+	windows_.push_back(node);
 }
 
 void RootNode::RemoveWindow( WindowNode* node )
@@ -95,4 +98,27 @@ void RootNode::DetermineQuit()
 {
 	if (windows_.size() == 0)
 		PostQuitMessage(0);
+}
+
+void RootNode::TranslateNotify( WPARAM w_param, LPARAM l_param )
+{
+
+}
+
+void RootNode::CheckAndApplyProperties()
+{
+	PreVisit([this](Node* node)->bool
+	{
+		if (node->IsPropertyChanged())
+			node->ApplyProperties();
+		return true;
+	});
+}
+
+void RootNode::ShowMainWindow()
+{
+	if (!windows_.empty())
+	{
+		windows_[0]->ShowWindow(SW_SHOWNORMAL);
+	}
 }

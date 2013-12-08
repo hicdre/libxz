@@ -38,7 +38,10 @@ public:
 	bool PreVisit(std::function<bool(Node*)> func);
 	bool PostVisit(std::function<bool(Node*)> func);
 
-	void SetAttribute(const std::string name, const std::wstring& value);
+	void SetProperty(const std::string name, const std::wstring& value);
+	bool IsPropertyChanged() const;
+	virtual void ApplyProperties();
+	bool GetProperty(const std::string name, std::wstring& value);
 protected:
 	Node* parent_;
 	Node* first_child_;
@@ -47,6 +50,7 @@ protected:
 	Node* prev_sibling_;
 	int32 child_count_;
 
-	std::unordered_map<std::string, std::wstring> attributes_;
+	std::unordered_map<std::string, std::wstring> property_map_;
+	bool property_changed_;
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "paintnode.h"
 
-class CubeNode : public PaintNode
+class CubeNode : public CanvasNode
 {
 public:
 	CubeNode(void);
@@ -9,5 +9,7 @@ public:
 
 public:
 	virtual void OnPaint(PaintStruct* ps) override;
+
+	//virtual void ApplyProperties() override;
 };
 

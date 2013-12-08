@@ -14,6 +14,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+	::CoInitialize(NULL);
+
 	base::AtExitManager exit_manager;
 	// TODO: Place code here.
 	base::MessageLoopForUI main_loop;
@@ -23,6 +25,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	Application::GetInstance()->LoadFromFile(L"app.xml");
 
 	Application::GetInstance()->Run();
+
+	::CoUninitialize();
 	
 	return 0;
 }

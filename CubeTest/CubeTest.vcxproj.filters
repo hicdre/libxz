@@ -13,8 +13,8 @@
     <Filter Include="node">
       <UniqueIdentifier>{5ca8b8c0-fbd6-476e-89c7-3fe17b5e3516}</UniqueIdentifier>
     </Filter>
-    <Filter Include="paint">
-      <UniqueIdentifier>{4f692282-9c06-4a5f-86e3-268c42452ad9}</UniqueIdentifier>
+    <Filter Include="render">
+      <UniqueIdentifier>{9d247ea3-15a4-4158-848f-c79d00e2fe39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,14 +42,29 @@
     <ClInclude Include="cubenode.h">
       <Filter>node</Filter>
     </ClInclude>
-    <ClInclude Include="paintnode.h">
-      <Filter>app</Filter>
-    </ClInclude>
-    <ClInclude Include="paintstruct.h">
-      <Filter>paint</Filter>
-    </ClInclude>
     <ClInclude Include="xmlconstructer.h">
       <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="paintnode.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="fontfactory.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="paintstruct.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="renderengine.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="brushfactory.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="StrokeStyle.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -75,14 +90,26 @@
     <ClCompile Include="cubenode.cpp">
       <Filter>node</Filter>
     </ClCompile>
-    <ClCompile Include="paintnode.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
-    <ClCompile Include="paintstruct.cpp">
-      <Filter>paint</Filter>
-    </ClCompile>
     <ClCompile Include="xmlconstructer.cpp">
       <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="paintnode.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="fontfactroy.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="paintstruct.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="renderengine.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="brushfactory.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="strokestyle.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

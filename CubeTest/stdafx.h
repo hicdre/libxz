@@ -22,3 +22,4 @@
 #pragma comment(lib,"Dbghelp.lib")
 #pragma comment(lib,"Psapi.lib")
 // TODO: reference additional headers your program requires here
+#pragma warning (disable:4244)

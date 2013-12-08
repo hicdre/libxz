@@ -10,6 +10,7 @@ Node::Node(void)
 	, next_sibling_(NULL)
 	, prev_sibling_(NULL)
 	, child_count_(0)
+	, property_changed_(false)
 {
 }
 
@@ -221,9 +222,32 @@ RootNode* Node::GetRoot() const
 	return dynamic_cast<RootNode*>(const_cast<Node*>(p));
 }
 
-void Node::SetAttribute( const std::string name, const std::wstring& value )
+void Node::SetProperty( const std::string name, const std::wstring& value )
 {
-	attributes_[name] = value;
+	property_map_[name] = value;
+	property_changed_ = true;
 }
+
+bool Node::IsPropertyChanged() const
+{
+	return property_changed_;
+}
+
+void Node::ApplyProperties()
+{
+	property_changed_ = true;
+}
+
+bool Node::GetProperty( const std::string name, std::wstring& value )
+{
+	if (property_map_.count(name))
+	{
+		value = property_map_[name];
+		return true;
+	}
+	return false;
+}
+
+
 
 

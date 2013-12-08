@@ -151,3 +151,5 @@ const geometry::Point kPointZero = PointMake(0,0);
 const geometry::Size kSizeZero = SizeMake(0,0);
 
 const geometry::Rect kRectZero = RectMake(0,0,0,0);
+
+void ToRECT(const geometry::Rect& rect, LPRECT lprect);

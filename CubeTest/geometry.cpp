@@ -261,3 +261,11 @@ namespace geometry
 	}
 
 }
+
+void ToRECT( const geometry::Rect& rect, LPRECT lprect )
+{
+	lprect->left = (LONG) rect.getMinX();
+	lprect->top = (LONG)rect.getMinY();
+	lprect->right = (LONG) rect.getMaxX();
+	lprect->bottom = (LONG) rect.getMaxY();
+}

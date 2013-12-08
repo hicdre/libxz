@@ -13,11 +13,15 @@ Node* CreateNode( MSXML2::IXMLDOMElementPtr elem )
 	std::wstring tag = elem->GettagName();
 	if (lstrcmpi(tag.c_str(), L"Window") == 0)
 	{
-		return Application::CreateWindowNode();
+		return new WindowNode;
 	}
 	else if (lstrcmpi(tag.c_str(), L"Cube") == 0)
 	{
 		return new CubeNode;
+	}
+	else if (lstrcmpi(tag.c_str(), L"Canvas") == 0)
+	{
+		return new CanvasNode;
 	}
 	return NULL;
 }
@@ -39,7 +43,7 @@ void CreateProperty(MSXML2::IXMLDOMNamedNodeMapPtr spiMap, Node* node)
 		if (nodevalue.empty())
 			continue;
 
-		node->SetAttribute(nodename, nodevalue);
+		node->SetProperty(nodename, nodevalue);
 	}
 }
 
@@ -112,16 +116,16 @@ void XmlConstructer::Load( const std::wstring& file )
 				spiDocument2->setProperty("SelectionLanguage", "XPath");*/
 			}
 
-			IXMLDOMElementPtr spiRoot = spiDocument->GetdocumentElement();
-			if (!spiRoot)
-				break;
-
-			IXMLDOMElementPtr spiApplication = spiRoot->selectSingleNode(_bstr_t(L"Application"));
+			IXMLDOMElementPtr spiApplication = spiDocument->GetdocumentElement();
 			if (!spiApplication)
 				break;
 
+			//IXMLDOMElementPtr spiApplication = spiRoot->selectSingleNode(_bstr_t(L"Application"));
+			//if (!spiApplication)
+			//	break;
+
 			{
-				IXMLDOMNodeListPtr spiList = spiRoot->GetchildNodes();
+				IXMLDOMNodeListPtr spiList = spiApplication->GetchildNodes();
 
 				if (spiList)
 				{
