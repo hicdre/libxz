@@ -19,6 +19,9 @@
     <Filter Include="nodes">
       <UniqueIdentifier>{ae5e8351-f129-4f21-b2f4-40acfa4ecadb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="css">
+      <UniqueIdentifier>{3e45ae18-4d58-43a4-ae5a-6b219f06b1d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,6 +78,24 @@
     <ClInclude Include="node_factory.h">
       <Filter>node</Filter>
     </ClInclude>
+    <ClInclude Include="css_rule.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_selector_list.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_property_set.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_property.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_value.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_property_names.h">
+      <Filter>css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -125,6 +146,15 @@
     </ClCompile>
     <ClCompile Include="node_factory.cpp">
       <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="css_rule.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_selector_list.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_property_names.cpp">
+      <Filter>css</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

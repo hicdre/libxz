@@ -84,6 +84,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="css_property.h" />
+    <ClInclude Include="css_property_names.h" />
+    <ClInclude Include="css_property_set.h" />
+    <ClInclude Include="css_rule.h" />
+    <ClInclude Include="css_selector_list.h" />
+    <ClInclude Include="css_value.h" />
     <ClInclude Include="cubenode.h" />
     <ClInclude Include="fontfactory.h" />
     <ClInclude Include="geometry.h" />
@@ -104,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="css_property_names.cpp" />
+    <ClCompile Include="css_rule.cpp" />
+    <ClCompile Include="css_selector_list.cpp" />
     <ClCompile Include="cubenode.cpp" />
     <ClCompile Include="CubeTest.cpp" />
     <ClCompile Include="fontfactroy.cpp" />

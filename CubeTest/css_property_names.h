@@ -4,7 +4,13 @@ namespace css
 {
 	enum PropertyId
 	{
-		 CSSPropertyInvalid = 0,
-		 CSSPropertyLeft = 113,
+		CSSPropertyInvalid = 0,
+		CSSPropertyLeft,
+		CSSPropertyRight,
+		CSSPropertyWidth,
+		CSSPropertyHeight,
 	};
+
+	const int firstCSSProperty = 1;
+	const char* getPropertyName(PropertyId id);
 }
