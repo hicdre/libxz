@@ -1,7 +1,7 @@
 #pragma once
 #include "paintnode.h"
 
-class WindowNode : public CanvasNode
+class WindowNode : public PaintNode
 {
 public:
 	WindowNode(void);
@@ -13,7 +13,7 @@ public:
 
 	void ShowWindow(int nCmdShow);
 
-	virtual void ApplyProperties();
+	void ReadWindowProperty();
 public:
 	virtual void OnPaint(PaintStruct* ps) override;
 

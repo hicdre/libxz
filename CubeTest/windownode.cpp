@@ -47,7 +47,7 @@ void WindowNode::ShowWindow( int nCmdShow )
 
 void WindowNode::OnPaint( PaintStruct* ps )
 {
-	render::RenderEngine* engine = Application::GetInstance()->GetRenderEngine();
+	render::RenderEngine* engine = render::RenderEngine::GetInstance();
 	render::Brush* brush = engine->GetBrushFactory()->GetBrush(RGB(0,255,0), render::Brush::StyleSolid);
 	ps->SetBrush(brush);
 	ps->SetStrokeWidth(10.0);
@@ -57,13 +57,13 @@ void WindowNode::OnPaint( PaintStruct* ps )
 	
 
 
-	render::Font* font = Application::GetInstance()->GetFontFactory()->GetFont(L"Consolas", 16, render::Font::StyleRegular);
+	render::Font* font = render::RenderEngine::GetInstance()->GetFontFactory()->GetFont(L"Consolas", 16, render::Font::StyleRegular);
 	ps->SetFont(font);
 	ps->SetTextColor(RGB(200,200,0));
 	ps->DrawText(L"Hello World!", RectMake(100, 250, 200, 50), DT_LEFT);
 }
 
-void WindowNode::ApplyProperties()
+void WindowNode::ReadWindowProperty()
 {
 	if (wnd_ == NULL)
 	{

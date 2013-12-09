@@ -1,11 +1,15 @@
 #pragma once
 #include "base/basictypes.h"
+#include "base/memory/scoped_ptr.h"
 #include <vector>
 #include <functional>
 #include <unordered_map>
 #include <string>
 
+#include "node_property_map.h"
+
 class RootNode;
+class NodeClassConstructor;
 class Node
 {
 public:
@@ -32,16 +36,18 @@ public:
 	Node* InsertAfter(Node* ref, Node* child);
 	Node* InsertBefore(Node* ref, Node* child);
 	
-	
 	//遍历, 返回ture继续, 返回false终止
 	//前序遍历
 	bool PreVisit(std::function<bool(Node*)> func);
 	bool PostVisit(std::function<bool(Node*)> func);
 
-	void SetProperty(const std::string name, const std::wstring& value);
 	bool IsPropertyChanged() const;
-	virtual void ApplyProperties();
+	void SetProperty(const std::string name, const std::wstring& value);
 	bool GetProperty(const std::string name, std::wstring& value);
+	void ReadProperties();
+
+	void ReadNodeProperty(NodePropertyMap* property_map);
+	void WriteNodeProperty(NodePropertyMap* property_map);
 protected:
 	Node* parent_;
 	Node* first_child_;
@@ -50,7 +56,9 @@ protected:
 	Node* prev_sibling_;
 	int32 child_count_;
 
-	std::unordered_map<std::string, std::wstring> property_map_;
+	scoped_ptr<NodePropertyMap> property_map_;
 	bool property_changed_;
+
+	std::string id_;
 };
 

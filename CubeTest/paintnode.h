@@ -3,11 +3,11 @@
 #include "geometry.h"
 #include "paintstruct.h"
 
-class CanvasNode : public Node
+class PaintNode : public Node
 {
 public:
-	CanvasNode(void);
-	virtual ~CanvasNode(void) override;
+	PaintNode(void);
+	virtual ~PaintNode(void) override;
 
 	void SetPosition(float x, float y);
 	geometry::Point GetPosition() const;
@@ -15,9 +15,7 @@ public:
 	void SetSize(float w, float h);
 	geometry::Size GetSize() const;
 
-	virtual void ApplyProperties() override;
-public:
-
+	void ReadPaintNodeProperty(NodePropertyMap* property_map);
 
 public:
 	void DoPaint(PaintStruct* ps);

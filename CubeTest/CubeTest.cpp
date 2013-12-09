@@ -1,8 +1,5 @@
 #include "stdafx.h"
-
-#include "base/at_exit.h"
 #include "base/message_loop.h"
-
 #include "application.h"
 
 
@@ -16,15 +13,15 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	::CoInitialize(NULL);
 
-	base::AtExitManager exit_manager;
+	Application app;
 	// TODO: Place code here.
 	base::MessageLoopForUI main_loop;
 
-	Application::GetInstance()->Init(&main_loop);
+	app.Init(&main_loop);
 
-	Application::GetInstance()->LoadFromFile(L"app.xml");
+	app.LoadFromFile(L"app.xml");
 
-	Application::GetInstance()->Run();
+	app.Run();
 
 	::CoUninitialize();
 	

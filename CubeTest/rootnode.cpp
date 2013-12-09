@@ -110,7 +110,7 @@ void RootNode::CheckAndApplyProperties()
 	PreVisit([this](Node* node)->bool
 	{
 		if (node->IsPropertyChanged())
-			node->ApplyProperties();
+			node->ReadProperties();
 		return true;
 	});
 }

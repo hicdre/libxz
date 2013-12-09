@@ -11,24 +11,28 @@
 
 #include "xmlconstructer.h"
 #include "renderengine.h"
+#include "node_factory.h"
 
 const wchar_t* kWindowClass = L"CubeTestWnd";
 
+Application* __instance_;
+
 Application::Application(void)
 	: root_node_(new RootNode)
-	, render_engine_(new render::RenderEngine)
 {
+	__instance_ = this;
+}
+
+
+Application* Application::GetInstance()
+{
+	return __instance_;
 }
 
 
 void Application::Run()
 {
 	base::MessageLoop::current()->Run();
-}
-
-Application* Application::GetInstance()
-{
-	return Singleton<Application>::get();
 }
 
 void Application::Init(base::MessageLoopForUI* loop)
@@ -51,8 +55,7 @@ void Application::Init(base::MessageLoopForUI* loop)
 
 	ATOM atom = RegisterClassEx(&window_class);
 
-	//CreateWindowNode();
-
+	NodeClassFactory::GetInstance()->Init();
 }
 
 LRESULT CALLBACK Application::WndProc( HWND window, UINT message, WPARAM w_param, LPARAM l_param )
@@ -107,13 +110,4 @@ void Application::LoadFromFile( const std::wstring& file )
 
 }
 
-render::FontFactory* Application::GetFontFactory()
-{
-	return render_engine_->GetFontFactory();
-}
-
-render::RenderEngine* Application::GetRenderEngine() const
-{
-	return render_engine_.get();
-}
 

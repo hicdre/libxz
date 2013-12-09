@@ -1,8 +1,10 @@
 #pragma once
 #include "base/basictypes.h"
 #include "base/memory/scoped_ptr.h"
+#include "base/at_exit.h"
 #include <string>
-template <typename T> struct DefaultSingletonTraits;
+
+#include "rootnode.h"
 
 namespace base {
 	class MessageLoopForUI;
@@ -13,31 +15,27 @@ namespace render{
 	class FontFactory;
 }
 
-class RootNode;
+class NodeClassFactory;
 class WindowNode;
 class Application
 {
 public:
-	static Application* GetInstance();
+	Application(void);
 
+	static Application* GetInstance();
 	void Init(base::MessageLoopForUI* loop);
 	void Run();
 
 	static HWND CreateHWND();
 	void LoadFromFile(const std::wstring& file);
 
-	render::FontFactory* GetFontFactory();
-	render::RenderEngine* GetRenderEngine() const;
 private:
-	Application(void);
 	static LRESULT CALLBACK WndProc(HWND window,
 		UINT message,
 		WPARAM w_param,
 		LPARAM l_param);
 
 	LRESULT HandleMessage(HWND hwnd, UINT message, WPARAM w_param, LPARAM l_param);
-
-
 private:
 	HWND root_wnd_;
 
@@ -45,9 +43,7 @@ private:
 
 	scoped_ptr<RootNode> root_node_;
 
-	scoped_ptr<render::RenderEngine> render_engine_;
-
-	friend struct DefaultSingletonTraits<Application>;
+	base::AtExitManager sigletons_;
 	DISALLOW_COPY_AND_ASSIGN(Application);
 };
 

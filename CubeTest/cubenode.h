@@ -1,7 +1,7 @@
 #pragma once
 #include "paintnode.h"
 
-class CubeNode : public CanvasNode
+class CubeNode : public PaintNode
 {
 public:
 	CubeNode(void);

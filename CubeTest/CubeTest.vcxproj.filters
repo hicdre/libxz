@@ -16,6 +16,9 @@
     <Filter Include="render">
       <UniqueIdentifier>{9d247ea3-15a4-4158-848f-c79d00e2fe39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="nodes">
+      <UniqueIdentifier>{ae5e8351-f129-4f21-b2f4-40acfa4ecadb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,20 +30,11 @@
     <ClInclude Include="application.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="node.h">
-      <Filter>app</Filter>
-    </ClInclude>
     <ClInclude Include="rootnode.h">
       <Filter>app</Filter>
     </ClInclude>
     <ClInclude Include="geometry.h">
       <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="windownode.h">
-      <Filter>node</Filter>
-    </ClInclude>
-    <ClInclude Include="cubenode.h">
-      <Filter>node</Filter>
     </ClInclude>
     <ClInclude Include="xmlconstructer.h">
       <Filter>app</Filter>
@@ -66,6 +60,21 @@
     <ClInclude Include="StrokeStyle.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="windownode.h">
+      <Filter>nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="cubenode.h">
+      <Filter>nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="node_property_map.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="node_factory.h">
+      <Filter>node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -75,20 +84,11 @@
     <ClCompile Include="application.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="node.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
     <ClCompile Include="rootnode.cpp">
       <Filter>app</Filter>
     </ClCompile>
     <ClCompile Include="geometry.cpp">
       <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="windownode.cpp">
-      <Filter>node</Filter>
-    </ClCompile>
-    <ClCompile Include="cubenode.cpp">
-      <Filter>node</Filter>
     </ClCompile>
     <ClCompile Include="xmlconstructer.cpp">
       <Filter>app</Filter>
@@ -110,6 +110,21 @@
     </ClCompile>
     <ClCompile Include="strokestyle.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="windownode.cpp">
+      <Filter>nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="cubenode.cpp">
+      <Filter>nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="node_property_map.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="node_factory.cpp">
+      <Filter>node</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

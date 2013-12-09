@@ -7,23 +7,12 @@
 #include "windownode.h"
 #include "cubenode.h"
 #include "application.h"
+#include "node_factory.h"
 
 Node* CreateNode( MSXML2::IXMLDOMElementPtr elem )
 {
-	std::wstring tag = elem->GettagName();
-	if (lstrcmpi(tag.c_str(), L"Window") == 0)
-	{
-		return new WindowNode;
-	}
-	else if (lstrcmpi(tag.c_str(), L"Cube") == 0)
-	{
-		return new CubeNode;
-	}
-	else if (lstrcmpi(tag.c_str(), L"Canvas") == 0)
-	{
-		return new CanvasNode;
-	}
-	return NULL;
+	std::string tag = elem->GettagName();
+	return NodeClassFactory::GetInstance()->CreateClass(tag);
 }
 
 void CreateProperty(MSXML2::IXMLDOMNamedNodeMapPtr spiMap, Node* node)

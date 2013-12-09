@@ -2,6 +2,8 @@
 #include "node.h"
 #include "base/logging.h"
 #include "rootnode.h"
+#include "node_property_map.h"
+
 
 Node::Node(void)
 	: parent_(NULL)
@@ -224,7 +226,11 @@ RootNode* Node::GetRoot() const
 
 void Node::SetProperty( const std::string name, const std::wstring& value )
 {
-	property_map_[name] = value;
+	if (!property_map_.get())
+	{
+		property_map_.reset(new NodePropertyMap);
+	}
+	property_map_->SetProperty(name, value);
 	property_changed_ = true;
 }
 
@@ -233,19 +239,31 @@ bool Node::IsPropertyChanged() const
 	return property_changed_;
 }
 
-void Node::ApplyProperties()
+void Node::ReadProperties()
 {
-	property_changed_ = true;
+
+	ReadNodeProperty(property_map_.get());
+	property_changed_ = false;
 }
 
 bool Node::GetProperty( const std::string name, std::wstring& value )
 {
-	if (property_map_.count(name))
-	{
-		value = property_map_[name];
-		return true;
-	}
-	return false;
+	if (!property_map_.get())
+		return false;
+
+	return property_map_->GetProperty(name, value);
+}
+
+void Node::ReadNodeProperty(NodePropertyMap* property_map)
+{
+	property_map->GetString("id", id_);
+	property_changed_ = false;
+}
+
+void Node::WriteNodeProperty( NodePropertyMap* property_map )
+{
+	property_map_.reset(property_map);
+	property_changed_ = true;
 }
 
 

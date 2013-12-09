@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "base/memory/singleton.h"
 #include "renderengine.h"
 #include "fontfactory.h"
 #include "brushfactory.h"
@@ -27,6 +28,11 @@ namespace render
 	BrushFactory* RenderEngine::GetBrushFactory() const
 	{
 		return brush_factory_.get();
+	}
+
+	RenderEngine* RenderEngine::GetInstance()
+	{
+		return Singleton<RenderEngine>::get();
 	}
 
 }

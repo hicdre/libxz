@@ -89,6 +89,8 @@
     <ClInclude Include="geometry.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="node_factory.h" />
+    <ClInclude Include="node_property_map.h" />
     <ClInclude Include="paintnode.h" />
     <ClInclude Include="paintstruct.h" />
     <ClInclude Include="brushfactory.h" />
@@ -107,6 +109,8 @@
     <ClCompile Include="fontfactroy.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="node.cpp" />
+    <ClCompile Include="node_factory.cpp" />
+    <ClCompile Include="node_property_map.cpp" />
     <ClCompile Include="paintnode.cpp" />
     <ClCompile Include="paintstruct.cpp" />
     <ClCompile Include="brushfactory.cpp" />
