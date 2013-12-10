@@ -96,6 +96,18 @@
     <ClInclude Include="css_property_names.h">
       <Filter>css</Filter>
     </ClInclude>
+    <ClInclude Include="css_selector.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_stylesheet.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_parser.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_lexter.h">
+      <Filter>css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -154,6 +166,15 @@
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_property_names.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_stylesheet.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_parser.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_lexter.cpp">
       <Filter>css</Filter>
     </ClCompile>
   </ItemGroup>
