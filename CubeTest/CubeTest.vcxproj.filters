@@ -177,5 +177,8 @@
     <ClCompile Include="css_lexter.cpp">
       <Filter>css</Filter>
     </ClCompile>
+    <ClCompile Include="css_value.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -120,6 +120,7 @@
     <ClCompile Include="css_rule.cpp" />
     <ClCompile Include="css_selector_list.cpp" />
     <ClCompile Include="css_stylesheet.cpp" />
+    <ClCompile Include="css_value.cpp" />
     <ClCompile Include="cubenode.cpp" />
     <ClCompile Include="CubeTest.cpp" />
     <ClCompile Include="fontfactroy.cpp" />
