@@ -8,7 +8,8 @@ namespace css
 		Unit_Null,	// (n/a) null unit, value is not specified
 		Unit_None,   // (n/a) value is none
 		Unit_Auto,	// (n/a) value is algorithmic
-		Unit_Inherit ,      // (n/a) value is inherited
+		Unit_Inherit,      // (n/a) value is inherited
+		Unit_Normal,      // (n/a) value is normal (algorithmic, different than auto)
 
 		Unit_String,  // (string*) a string value
 		Unit_Element,     // (string*) an element id
@@ -29,10 +30,11 @@ namespace css
 
 		Unit_Pixel,// (float) CSS pixel unit
 
-		Unit_Degree,// (float) 360 per circle
+		Unit_Degree// (float) 360 per circle
 	};
 
 	struct StringValue;
+	struct RectValue;
 	class Value
 	{
 	public:
@@ -45,6 +47,12 @@ namespace css
 
 		bool IsEqual(Value* in) const;
 		void Assign(Value* in);
+
+		/**
+		* Serialize |this| as a specified value for |aProperty| and append
+		* it to |aResult|.
+		*/
+		void AppendToString(PropertyId aProperty, std::string& aResult) const;
 
 		Unit GetUnit() const { return mUnit; }
 		bool IsLengthUnit() const { return Unit_EM <= mUnit && mUnit <= Unit_Pixel; }
@@ -80,22 +88,13 @@ namespace css
 
 		float GetAngleValue() const
 		{
-			DCHECK(Degree == Unit_Degree);
+			DCHECK(mUnit == Unit_Degree);
 			return mValue.mFloat;
 		}
 
-		std::string& GetStringValue(std::string& aBuffer) const
-		{
-			DCHECK(UnitHasStringValue());
-			aBuffer = mValue.mString->buffer;
-			return aBuffer;
-		}
+		std::string& GetStringValue(std::string& aBuffer) const;
 
-		const char* GetStringBufferValue() const
-		{
-			DCHECK(UnitHasStringValue());
-			return mValue.mString->buffer.data();
-		}
+		const char* GetStringBufferValue() const;
 
 		unsigned GetColorValue() const
 		{

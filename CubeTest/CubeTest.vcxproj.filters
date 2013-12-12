@@ -93,9 +93,6 @@
     <ClInclude Include="css_value.h">
       <Filter>css</Filter>
     </ClInclude>
-    <ClInclude Include="css_property_names.h">
-      <Filter>css</Filter>
-    </ClInclude>
     <ClInclude Include="css_selector.h">
       <Filter>css</Filter>
     </ClInclude>
@@ -106,6 +103,18 @@
       <Filter>css</Filter>
     </ClInclude>
     <ClInclude Include="css_lexter.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_const.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_declaration.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_keyword.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_style_consts.h">
       <Filter>css</Filter>
     </ClInclude>
   </ItemGroup>
@@ -178,6 +187,15 @@
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_value.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_declaration.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_property.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_property_const.cpp">
       <Filter>css</Filter>
     </ClCompile>
   </ItemGroup>
