@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include "css_value.h"
+#include "css_property.h"
 
 namespace css
 {
@@ -14,11 +15,11 @@ namespace css
 		Declaration();
 		~Declaration();
 
-		void RemoveProperty(PropertyId aProperty);
+		void RemoveProperty(Property::Id aProperty);
 
-		bool HasProperty(PropertyId aProperty) const;
+		bool HasProperty(Property::Id aProperty) const;
 
-		void GetValue(PropertyId aProperty, std::string& aValue) const;
+		void GetValue(Property::Id aProperty, std::string& aValue) const;
 
 		int32 Count() const;
 
@@ -34,12 +35,12 @@ namespace css
 
 		void ClearData();
 	private:
-		bool AppendValueToString(PropertyId aProperty, std::string& aResult) const;
+		bool AppendValueToString(Property::Id aProperty, std::string& aResult) const;
 		// Helper for ToString with strange semantics regarding aValue.
-		void AppendPropertyAndValueToString(PropertyId aProperty,
+		void AppendPropertyAndValueToString(Property::Id aProperty,
 			std::string& aValue,
 			std::string& aResult) const;
 
-		std::unordered_map<PropertyId, Value*> mData;
+		std::unordered_map<Property::Id, Value*> mData;
 	};
 }

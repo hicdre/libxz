@@ -84,9 +84,6 @@
     <ClInclude Include="css_selector_list.h">
       <Filter>css</Filter>
     </ClInclude>
-    <ClInclude Include="css_property_set.h">
-      <Filter>css</Filter>
-    </ClInclude>
     <ClInclude Include="css_property.h">
       <Filter>css</Filter>
     </ClInclude>
@@ -102,9 +99,6 @@
     <ClInclude Include="css_parser.h">
       <Filter>css</Filter>
     </ClInclude>
-    <ClInclude Include="css_lexter.h">
-      <Filter>css</Filter>
-    </ClInclude>
     <ClInclude Include="css_const.h">
       <Filter>css</Filter>
     </ClInclude>
@@ -115,6 +109,21 @@
       <Filter>css</Filter>
     </ClInclude>
     <ClInclude Include="css_style_consts.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_keyword_define.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_property_define.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_style_struct.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_style_struct_define.h">
+      <Filter>css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_scanner.h">
       <Filter>css</Filter>
     </ClInclude>
   </ItemGroup>
@@ -174,16 +183,10 @@
     <ClCompile Include="css_selector_list.cpp">
       <Filter>css</Filter>
     </ClCompile>
-    <ClCompile Include="css_property_names.cpp">
-      <Filter>css</Filter>
-    </ClCompile>
     <ClCompile Include="css_stylesheet.cpp">
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_parser.cpp">
-      <Filter>css</Filter>
-    </ClCompile>
-    <ClCompile Include="css_lexter.cpp">
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_value.cpp">
@@ -196,6 +199,12 @@
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_property_const.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_keyword.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_scanner.cpp">
       <Filter>css</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1039,5 +1039,4 @@ static inline mozilla::css::Side operator++(mozilla::css::Side& side, int) {
 #define NS_STYLE_SCAN_PROGRESSIVE               0
 #define NS_STYLE_SCAN_INTERLACE                 1
 
-#endif /* nsStyleConsts_h___ */
 }

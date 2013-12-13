@@ -19,9 +19,13 @@ namespace css
 		}
 	}
 
-	void Declaration::RemoveProperty( PropertyId aProperty )
+	void Declaration::RemoveProperty( Property::Id aProperty )
 	{
 		if (Property::IsShorthand(aProperty)) {
+			for (const Property::Id* iter = Property::SubpropertyEntryFor(aProperty);
+				*iter != Property::UNKNOWN; ++iter) {
+				mData.erase(*iter);
+			}
 			//CSSPROPS_FOR_SHORTHAND_SUBPROPERTIES(p, aProperty) {
 			//	data.ClearLonghandProperty(*p);
 			//	mOrder.RemoveElement(*p);
@@ -33,12 +37,12 @@ namespace css
 		}
 	}
 
-	bool Declaration::HasProperty( PropertyId aProperty ) const
+	bool Declaration::HasProperty( Property::Id aProperty ) const
 	{
 		return mData.count(aProperty) > 0;
 	}
 
-	void Declaration::GetValue( PropertyId aProperty, std::string& aValue ) const
+	void Declaration::GetValue( Property::Id aProperty, std::string& aValue ) const
 	{
 		if (!Property::IsShorthand(aProperty)) {
 			AppendValueToString(aProperty, aValue);
@@ -66,7 +70,7 @@ namespace css
 
 	}
 
-	bool Declaration::AppendValueToString( PropertyId aProperty, std::string& aResult ) const
+	bool Declaration::AppendValueToString( Property::Id aProperty, std::string& aResult ) const
 	{
 		if (!mData.count(aProperty))
 			return false;

@@ -1,32 +1,171 @@
 #pragma once
 #include "base/basictypes.h"
 #include "base/memory/scoped_ptr.h"
-#include "css_const.h"
+#include "base/logging.h"
 #include <string>
+
+#include "css_keyword.h"
 
 namespace css
 {
+	enum PropertyFlag
+	{
+		FLAG_DIRECTIONAL_SOURCE = (1<<0),
+		FLAG_VALUE_LIST_USES_COMMAS = (1<<1), /* otherwise spaces */
+		FLAG_APPLIES_TO_FIRST_LETTER = (1<<2),
+		FLAG_APPLIES_TO_FIRST_LINE = (1<<3),
+		FLAG_IGNORED_WHEN_COLORS_DISABLED = (1<<4),
+		FLAG_START_IMAGE_LOADS = (1<<5),
+		FLAG_IMAGE_IS_IN_ARRAY_0 = (1<<6),
+		FLAG_REPORT_OTHER_NAME = (1<<7),
+		FLAG_STORES_CALC = (1<<8),
+		FLAG_PARSE_PROPERTY_MASK = (7<<9),
+		FLAG_PARSE_INACCESSIBLE = (1<<9),
+		FLAG_PARSE_FUNCTION = (2<<9),
+		FLAG_PARSE_VALUE = (3<<9),
+		FLAG_PARSE_VALUE_LIST = (4<<9),
+		FLAG_VALUE_PARSER_FUNCTION = (1<<12),
+		FLAG_VALUE_RESTRICTION_MASK = (3<<13),
+		FLAG_VALUE_NONNEGATIVE = (1<<13),
+		FLAG_VALUE_AT_LEAST_ONE = (2<<13),
+		FLAG_HASHLESS_COLOR_QUIRK = (1<<15),
+		FLAG_UNITLESS_LENGTH_QUIRK = (1<<16),
+		FLAG_IS_ALIAS = (1<<17),
+		FLAG_APPLIES_TO_PLACEHOLDER = (1<<18),
+		FLAG_APPLIES_TO_PAGE_RULE = (1<<19),
+		FLAG_APPLIES_TO_FIRST_LETTER_AND_FIRST_LINE = FLAG_APPLIES_TO_FIRST_LETTER | FLAG_APPLIES_TO_FIRST_LINE,
+	};
+
 	class Property
 	{
 	public:
+		enum Id {
+			UNKNOWN = -1,
 
-		enum EnabledState {
-			eEnabled,
-			eAny
+#define CSS_PROP(name_, id_, method_, flags_, pref_, parsevariant_, \
+	kwtable_, stylestruct_, stylestructoffset_, animtype_) \
+	id_,
+#include "css_property_define.h"
+#undef CSS_PROP
+
+			COUNT_no_shorthands,
+			// Make the count continue where it left off:
+			COUNT_DUMMY = COUNT_no_shorthands - 1,
+
+#define CSS_PROP_SHORTHAND(name_, id_, method_, flags_, pref_) \
+	id_,
+#include "css_property_define.h"
+#undef CSS_PROP_SHORTHAND
+
+			COUNT,
+			// Make the count continue where it left off:
+			COUNT_DUMMY2 = COUNT - 1,
+			//no aliases
+			COUNT_with_aliases,
+			// Make the count continue where it left off:
+			COUNT_DUMMY3 = COUNT_with_aliases - 1,
+
+			// Some of the values below could probably overlap with each other
+			// if we had a need for them to do so.
+
+			// Extra values for use in the values of the 'transition-property'
+			// property.
+			Extra_no_properties,
+			Extra_all_properties,
+
+			// Extra dummy values for nsCSSParser internal use.
+			Extra_x_none_value,
+			Extra_x_auto_value
 		};
 
-		static PropertyId LookupProperty(const std::string& aProperty,
-			EnabledState aEnabled);
+		static Id LookupProperty(const std::string& aProperty);
 
-		static inline bool IsShorthand(PropertyId aProperty) {
-			//NS_ABORT_IF_FALSE(0 <= aProperty && aProperty < eCSSProperty_COUNT,
-			//	"out of range");
-			return (aProperty >= Property_CountNoShorthands);
+		static inline bool IsShorthand(Id aProperty) {
+			DCHECK(0 <= aProperty && aProperty < COUNT) << "out of range";
+			return (aProperty >= COUNT_no_shorthands);
 		}
 
-		static const char* GetStringValue(PropertyId aProperty);
+		static const char* GetStringValue(Id aProperty);
+
+		// Given a CSS Property and a Property Enum Value
+		// Return back a const nsString& representation of the 
+		// value. Return back nullstr if no value is found
+		static const char* LookupPropertyValue(Id aProperty, int32 aValue);
+
+		// Get a color name for a predefined color value like buttonhighlight or activeborder
+		// Sets the aStr param to the name of the propertyID
+		static bool GetColorName(int32 aPropID, std::string &aStr);
+
+		// Returns the index of |aKeyword| in |aTable|, if it exists there;
+		// otherwise, returns -1.
+		// NOTE: Generally, clients should call FindKeyword() instead of this method.
+		static int32 FindIndexOfKeyword(Id aKeyword, const int32 aTable[]);
+
+		// Find |aKeyword| in |aTable|, if found set |aValue| to its corresponding value.
+		// If not found, return false and do not set |aValue|.
+		static bool FindKeyword(Id aKeyword, const int32 aTable[], int32& aValue);
+
+		// Return the first keyword in |aTable| that has the corresponding value |aValue|.
+		// Return |eCSSKeyword_UNKNOWN| if not found.
+		static Keyword::Id ValueToKeywordEnum(int32 aValue, const int32 aTable[]);
+		// Ditto but as a string, return "" when not found.
+		static const char* ValueToKeyword(int32 aValue, const int32 aTable[]);
 
 	private:
+		static const uint32 kFlagsTable[];//COUNT
+	public:
+		static inline bool PropHasFlags(Id aProperty, uint32 aFlags)
+		{
+			DCHECK(0 <= aProperty && aProperty < COUNT)
+				<<"out of range";
+			return (kFlagsTable[aProperty] & aFlags) == aFlags;
+		}
+
+		static inline uint32 PropertyParseType(Id aProperty)
+		{
+			DCHECK(0 <= aProperty && aProperty < COUNT)
+				<<"out of range";
+			return kFlagsTable[aProperty] &
+				FLAG_PARSE_PROPERTY_MASK;
+		}
+
+		static inline uint32 ValueRestrictions(Id aProperty)
+		{
+			DCHECK(0 <= aProperty && aProperty < COUNT)
+				<<"out of range";
+			return kFlagsTable[aProperty] &
+				FLAG_VALUE_RESTRICTION_MASK;
+		}
+	private:
+		// Lives in nsCSSParser.cpp for the macros it depends on.
+		static const uint32 kParserVariantTable[];//COUNT_no_shorthands
+
+	public:
+		static inline uint32 ParserVariant(Id aProperty) {
+			DCHECK(0 <= aProperty && aProperty < COUNT_no_shorthands)
+				<<"out of range";
+			return kParserVariantTable[aProperty];
+		}
+
+	private:
+		// A table for shorthand properties.  The appropriate index is the
+		// property ID minus eCSSProperty_COUNT_no_shorthands.
+		static const Id *const
+			kSubpropertyTable[COUNT - COUNT_no_shorthands];
+
+	public:
+		static inline const Id * SubpropertyEntryFor(Id aProperty) {
+			DCHECK(COUNT_no_shorthands <= aProperty && aProperty < COUNT)
+				<<"out of range";
+			return kSubpropertyTable[aProperty - COUNT_no_shorthands];
+		}
+
+		// Returns an eCSSProperty_UNKNOWN-terminated array of the shorthand
+		// properties containing |aProperty|, sorted from those that contain
+		// the most properties to those that contain the least.
+		static const Id * ShorthandsContaining(Id aProperty);
+	private:
+		static const int32* kKeywordTableTable[];
 		static const int32 kAnimationDirectionKTable[];
 		static const int32 kAnimationFillModeKTable[];
 		static const int32 kAnimationIterationCountKTable[];

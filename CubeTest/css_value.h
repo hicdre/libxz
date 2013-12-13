@@ -33,6 +33,11 @@ namespace css
 		Unit_Degree// (float) 360 per circle
 	};
 
+	namespace Property
+	{
+		enum Id;
+	}
+
 	struct StringValue;
 	struct RectValue;
 	class Value
@@ -52,7 +57,7 @@ namespace css
 		* Serialize |this| as a specified value for |aProperty| and append
 		* it to |aResult|.
 		*/
-		void AppendToString(PropertyId aProperty, std::string& aResult) const;
+		void AppendToString(Property::Id aProperty, std::string& aResult) const;
 
 		Unit GetUnit() const { return mUnit; }
 		bool IsLengthUnit() const { return Unit_EM <= mUnit && mUnit <= Unit_Pixel; }

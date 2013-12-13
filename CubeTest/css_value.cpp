@@ -294,7 +294,7 @@ namespace css
 		mUnit = Unit_Normal;
 	}
 
-	void Value::AppendToString( PropertyId aProperty, std::string& aResult ) const
+	void Value::AppendToString( Property::Id aProperty, std::string& aResult ) const
 	{
 		Unit unit = GetUnit();
 		if (unit == Unit_Null) {
