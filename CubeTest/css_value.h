@@ -1,6 +1,7 @@
 #pragma once
 #include "base/basictypes.h"
 #include "base/logging.h"
+#include "css_property.h"
 
 namespace css
 {
@@ -32,11 +33,6 @@ namespace css
 
 		Unit_Degree// (float) 360 per circle
 	};
-
-	namespace Property
-	{
-		enum Id;
-	}
 
 	struct StringValue;
 	struct RectValue;

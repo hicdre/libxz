@@ -4,8 +4,9 @@
 
 namespace css
 {
+
+
 	StyleSheet::StyleSheet()
-		: parser_(new Parser)
 	{
 
 	}
@@ -13,11 +14,6 @@ namespace css
 	StyleSheet::~StyleSheet()
 	{
 
-	}
-
-	void StyleSheet::AddData( const std::string& data )
-	{
-		parser_->ParseChunk(data);
 	}
 
 }

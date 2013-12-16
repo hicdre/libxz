@@ -89,6 +89,7 @@
     <ClInclude Include="css_keyword.h" />
     <ClInclude Include="css_keyword_define.h" />
     <ClInclude Include="css_parser.h" />
+    <ClInclude Include="css_parser_impl.h" />
     <ClInclude Include="css_property.h" />
     <ClInclude Include="css_property_define.h" />
     <ClInclude Include="css_rule.h" />
@@ -126,10 +127,12 @@
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessSuppressLineNumbers>
     </ClCompile>
     <ClCompile Include="css_parser.cpp" />
+    <ClCompile Include="css_parser_impl.cpp" />
     <ClCompile Include="css_property.cpp" />
     <ClCompile Include="css_property_const.cpp" />
     <ClCompile Include="css_rule.cpp" />
     <ClCompile Include="css_scanner.cpp" />
+    <ClCompile Include="css_selector.cpp" />
     <ClCompile Include="css_selector_list.cpp" />
     <ClCompile Include="css_stylesheet.cpp" />
     <ClCompile Include="css_value.cpp" />

@@ -126,6 +126,9 @@
     <ClInclude Include="css_scanner.h">
       <Filter>css</Filter>
     </ClInclude>
+    <ClInclude Include="css_parser_impl.h">
+      <Filter>css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -205,6 +208,12 @@
       <Filter>css</Filter>
     </ClCompile>
     <ClCompile Include="css_scanner.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_parser_impl.cpp">
+      <Filter>css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_selector.cpp">
       <Filter>css</Filter>
     </ClCompile>
   </ItemGroup>

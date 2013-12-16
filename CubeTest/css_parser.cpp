@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "css_parser.h"
+#include "css_property.h"
+#include "css_parser_impl.h"
 
 namespace css
 {
@@ -83,7 +85,7 @@ namespace css
 
 	// This lives here because it depends on the above macros.
 	const uint32
-		nsCSSProps::kParserVariantTable[eCSSProperty_COUNT_no_shorthands] = {
+		Property::kParserVariantTable[eCSSProperty_COUNT_no_shorthands] = {
 #define CSS_PROP(name_, id_, method_, flags_, pref_, parsevariant_, kwtable_, \
 	stylestruct_, stylestructoffset_, animtype_)                 \
 	parsevariant_,
@@ -91,11 +93,27 @@ namespace css
 #undef CSS_PROP
 	};
 
+
 	Parser::Parser()
 	{
 	}
 
 	Parser::~Parser()
+	{
+
+	}
+
+	void Parser::SetStyleSheet( StyleSheet* aSheet )
+	{
+
+	}
+
+	bool Parser::ParseSheet( const std::string& aInput, uint32 aLineNumber, bool aAllowUnsafeRules )
+	{
+
+	}
+
+	bool Parser::ParseStyleAttribute( const std::string& aAttributeValue, Rule** aResult )
 	{
 
 	}
