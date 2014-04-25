@@ -1396,9 +1396,6 @@
     <ClCompile Include="debug\debugger_win.cc">
       <Filter>debug</Filter>
     </ClCompile>
-    <ClCompile Include="debug\trace_event_impl_constants.cc">
-      <Filter>debug</Filter>
-    </ClCompile>
     <ClCompile Include="debug\trace_event_impl.cc">
       <Filter>debug</Filter>
     </ClCompile>

@@ -72,15 +72,6 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	base::AtExitManager exit_manager;
 
-	std::string working = //"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzLVQIg0pdp8zceO+9qYGmbkJL/Wtq43yiZpCi6qW8Gt1+6bNTXvC6DbHt5wJeSoyeM+bB/pwaEN+3IHuuo6Z8PQf9fEKD/zsSF08+H2GgTs42lpO+MGub/87a/E6ubmH/SNH2aGhnS4I2KTRmQkvE5ZRnfSscvjdQeCjTHVkQFQIDAQAB";
-	"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsTeRKuxevWiein7geQszhb8mHRpLByZbXX8tR0m1GPBkN8SN9xgo7NijAYAqa3H5rGuDmNZm2k7UzdlVfC5+gO6uf/rVOPx7kHJNQBQaBuWUEd4KHLWa3jOy+mllD72TwXNdtJJdX6TWf115SGHlLzZRg7S47dke6KTZI6O8gcQIDAQAB";
-	std::string input, output;
-	if (base::Base64Decode(working, &input))
-	{
-		int i;
-		i = 1;
-	}
-
 	SimpleListener clientListener;
 	base::MessageLoopForIO main_message_loop;
 

@@ -70,13 +70,6 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	base::AtExitManager exit_manager;
 
-	HKEY key;
-	RegOpenKeyEx(HKEY_CURRENT_USER, L"SOFTWARE\\Classes\\CLSID", 0, KEY_READ, &key);
-
-	DWORD count = 0;
-	LONG result = ::RegQueryInfoKey(key, NULL, 0, NULL, &count, NULL, NULL,
-		NULL, NULL, NULL, NULL, NULL);
-
 	SimpleListener serverListener;
 	base::MessageLoopForIO main_message_loop;
 

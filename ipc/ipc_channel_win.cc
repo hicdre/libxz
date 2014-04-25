@@ -184,7 +184,7 @@ bool Channel::ChannelImpl::DidEmptyInputBuffers() {
 // static
 const string16 Channel::ChannelImpl::PipeName(
     const std::string& channel_id, int32* secret) {
-  std::string name("\\\\.\\pipe\\chrome.");
+  std::string name("\\\\.\\pipe\\ipc.");
 
   // Prevent the shared secret from ending up in the pipe name.
   size_t index = channel_id.find_first_of('\\');
